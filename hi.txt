@@ -3,7 +3,6 @@ hello
 bye
 bye again
 hello again
-
 as
 today
 Monday
