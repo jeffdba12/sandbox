@@ -25,10 +25,18 @@ jobs:
     - name: Show TFLint version
       run: tflint --version
 
-    - name: Init TFLint plugins
-      run: tflint --init
+    - name: Init TFLint
+      run: |
+        tflint --init --config=../.tflint.hcl --chdir=abc
+        tflint --init --config=../.tflint.hcl --chdir=xyz
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ github.token }}
 
-    - name: Run TFLint
-      run: tflint --minimum-severity=error --format=compact
+    - name: Run TFLint on abc and xyz
+      run: |
+        EXIT_CODE=0
+
+        tflint --config=../.tflint.hcl --chdir=abc -f compact --minimum-severity=error || EXIT_CODE=$?
+        tflint --config=../.tflint.hcl --chdir=xyz -f compact --minimum-severity=error || EXIT_CODE=$?
+
+        exit $EXIT_CODE
