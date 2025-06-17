@@ -36,7 +36,7 @@ jobs:
       run: |
         EXIT_CODE=0
 
-        tflint --config=../.tflint.hcl --chdir=abc -f compact --minimum-severity=error || EXIT_CODE=$?
-        tflint --config=../.tflint.hcl --chdir=xyz -f compact --minimum-severity=error || EXIT_CODE=$?
+        tflint --config=../.tflint.hcl --chdir=abc -f compact || EXIT_CODE=$?
+        tflint --config=../.tflint.hcl --chdir=xyz -f compact || EXIT_CODE=$?
 
         exit $EXIT_CODE
