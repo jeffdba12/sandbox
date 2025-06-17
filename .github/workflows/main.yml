@@ -26,21 +26,22 @@ jobs:
       name: Setup TFLint
       with:
         tflint_version: v0.52.0
+
     - name: Show version
       run: tflint --version
 
     - name: Init TFLint
-      run: tflint --init
+      run: |
+        tflint --init --config=.tflint.hcl --chdir=abc
+        tflint --init --config=.tflint.hcl --chdir=xyz
       env:
-        # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
         GITHUB_TOKEN: ${{ github.token }}
 
     - name: Run TFLint on abc and xyz
       run: |
         EXIT_CODE=0
 
-        tflint --chdir=abc -f compact || EXIT_CODE=$?
-        tflint --chdir=xyz -f compact || EXIT_CODE=$?
+        tflint --config=.tflint.hcl --chdir=abc -f compact || EXIT_CODE=$?
+        tflint --config=.tflint.hcl --chdir=xyz -f compact || EXIT_CODE=$?
 
         exit $EXIT_CODE
-
