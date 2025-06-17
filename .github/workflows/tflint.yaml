@@ -1,0 +1,34 @@
+name: Lint
+
+on:
+  pull_request:
+
+jobs:
+  tflint:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Cache TFLint plugins
+      uses: actions/cache@v4
+      with:
+        path: ~/.tflint.d/plugins
+        key: ${{ runner.os }}-tflint-${{ hashFiles('.tflint.hcl') }}
+
+    - name: Setup TFLint
+      uses: terraform-linters/setup-tflint@v4
+      with:
+        tflint_version: v0.52.0
+
+    - name: Show TFLint version
+      run: tflint --version
+
+    - name: Init TFLint plugins
+      run: tflint --init
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Run TFLint
+      run: tflint --minimum-severity=error --format=compact
