@@ -32,8 +32,8 @@ jobs:
 
     - name: Init TFLint
       run: |
-        tflint --init --config=.tflint.hcl --chdir=abc
-        tflint --init --config=.tflint.hcl --chdir=xyz
+        tflint --init --config=../.tflint.hcl --chdir=abc
+        tflint --init --config=../.tflint.hcl --chdir=xyz
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
@@ -41,7 +41,7 @@ jobs:
       run: |
         EXIT_CODE=0
 
-        tflint --config=.tflint.hcl --chdir=abc -f compact || EXIT_CODE=$?
-        tflint --config=.tflint.hcl --chdir=xyz -f compact || EXIT_CODE=$?
+        tflint --config=../.tflint.hcl --chdir=abc -f compact || EXIT_CODE=$?
+        tflint --config=../.tflint.hcl --chdir=xyz -f compact || EXIT_CODE=$?
 
         exit $EXIT_CODE
