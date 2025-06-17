@@ -37,5 +37,5 @@ jobs:
 
     - name: Run TFLint
       run: |
-        tflint -f compact abc/
-        tflint -f compact xyz/
+        tflint -f compact --chdir=abc
+        tflint -f compact --chdir=xyz
