@@ -10,7 +10,7 @@ repos:
   hooks:
   - id: terraform_fmt
   - id: terraform_docs
-    args: ["--args=--output-mode=inject", "--args=--lockfile=false"]
+    args: ["--args=--lockfile=false"]
   - id: terraform_tflint
     args:
     - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
