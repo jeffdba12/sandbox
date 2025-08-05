@@ -1,3 +1,13 @@
+terraform {
+  required_providers {
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.0"
+    }
+  }
+  required_version = ">= 1.0"
+}
+
 variable "region" {
   type = map(any)
   default = {
@@ -7,9 +17,6 @@ variable "region" {
     "uk2" = {
       "region" = "ukwest",
     },
-    "us" = {
-      "region" = "eastus",
-    }
     "us2" = {
       "region" = "eastus2",
     }
@@ -23,5 +30,19 @@ resource "random_password" "password" {
 }
 
 variable "cidr" {
+  type    = string
   default = "172.16.0.0/20"
+}
+
+output "abc_region" {
+  value = var.region
+
+}
+
+output "abc_password" {
+  value = random_password.password.result
+}
+
+output "abc_cidr" {
+  value = var.cidr
 }
