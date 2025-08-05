@@ -11,8 +11,8 @@ on:
   pull_request:
     branches: [ "main" ]
   schedule:
-    - cron: '40 7 1 * *'    
-  workflow_dispatch:    
+    - cron: '40 7 1 * *'
+  workflow_dispatch:
 
 jobs:
   tfsec:
