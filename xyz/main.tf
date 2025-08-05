@@ -17,9 +17,6 @@ variable "region" {
     "uk2" = {
       "region" = "ukwest",
     },
-    "us" = {
-      "region" = "eastus",
-    }
     "us2" = {
       "region" = "eastus2",
     }

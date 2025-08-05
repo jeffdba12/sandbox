@@ -28,7 +28,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cidr"></a> [cidr](#input\_cidr) | n/a | `string` | `"172.16.0.0/20"` | no |
-| <a name="input_region"></a> [region](#input\_region) | n/a | `map(any)` | <pre>{<br>  "uk1": {<br>    "region": "uksouth"<br>  },<br>  "uk2": {<br>    "region": "ukwest"<br>  },<br>  "us": {<br>    "region": "eastus"<br>  },<br>  "us2": {<br>    "region": "eastus2"<br>  }<br>}</pre> | no |
+| <a name="input_region"></a> [region](#input\_region) | n/a | `map(any)` | <pre>{<br>  "uk1": {<br>    "region": "uksouth"<br>  },<br>  "uk2": {<br>    "region": "ukwest"<br>  },<br>  "us2": {<br>    "region": "eastus2"<br>  }<br>}</pre> | no |
 
 ## Outputs
 
