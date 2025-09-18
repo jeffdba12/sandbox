@@ -26,6 +26,7 @@ jobs:
         run: |
           gh repo list ${{ github.actor }} --json nameWithOwner -L 1000 | jq -r '.[].nameWithOwner' | while read repo; do
             echo "=== $repo ==="
+            gh api repos/$repo/contents/test.txt --jq .content
             content=$(gh api repos/$repo/contents/test.txt --jq .content --silent 2>/dev/null || echo "")
             if [ -n "$content" ]; then
               echo "$content" | base64 -d
