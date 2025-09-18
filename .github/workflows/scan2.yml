@@ -26,12 +26,12 @@ jobs:
         run: |
           gh repo list ${{ github.actor }} --json nameWithOwner -L 1000 | jq -r '.[].nameWithOwner' | while read repo; do
             echo "=== $repo ==="
-            gh api repos/$repo/contents/test.txt --jq .content | base64 -d
-            content=$(gh api repos/$repo/contents/test.txt --jq .content)
-            if [ -n "$content" ]; then
-              echo "$content" | base64 -d
+            # Try fetching raw file; if it fails, print "not found"
+            if content=$(gh api repos/$repo/contents/test.txt --silent 2>/dev/null); then
+              echo "$content" | jq -r .content | base64 -d
               echo ""
             else
               echo "test.txt not found"
             fi
           done
+
