@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read      # required for repos
-      metadata: read      # required to list repos
     steps:
       - name: Get GitHub App token
         id: app-token
