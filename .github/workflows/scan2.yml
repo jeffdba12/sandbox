@@ -28,7 +28,8 @@ jobs:
             echo "=== $repo ==="
             # Try fetching raw file; if it fails, print "not found"
             if content=$(gh api repos/$repo/contents/test.txt --silent 2>/dev/null); then
-              echo "$content" | jq -r .content | base64 -d
+              echo "$content" 
+              echo "$content" | jq -r .content | base64 -d              
               echo ""
             else
               echo "test.txt not found"
